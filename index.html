@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archivo Criminal | Landing Moderna</title>
     
+    <!-- ETIQUETAS PARA GOOGLE (SEO) -->
+    <title>Archivo Criminal | Expedientes, Asesinos Seriales y Geopolítica</title>
+    <meta name="description" content="Base de datos y análisis profundo de criminología, perfiles de asesinos seriales (como los Maníacos de la Academia) y conflictos geopolíticos. Archivos desclasificados 2026.">
+    <meta name="keywords" content="asesinos seriales, criminologia, geopolitica, maniacos de la academia, perfiles criminales, derecho penal, irkutsk">
+    <meta name="author" content="Observatorio Archivo Criminal">
+    <meta name="robots" content="index, follow"> <!-- Le dice a Google que sí debe rastrear esta página -->
+
     <!-- Favicon -->
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/190/190411.png" type="image/png">
 
@@ -186,13 +193,29 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-light bg-white py-3">
-        <div class="container d-flex justify-content-center">
-            <!-- Logo y nombre centrados -->
-            <a class="navbar-brand fw-bold d-flex align-items-center m-0" href="#">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 border-bottom">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold d-flex align-items-center m-0" href="index.html">
                 <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Logo" width="24" height="24" class="me-2">
                 Archivo Criminal
             </a>
+            
+            <!-- Botón de menú para celulares -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Enlaces del menú -->
+            <div class="collapse navbar-collapse justify-content-end" id="menuPrincipal">
+                <div class="d-flex flex-column flex-lg-row gap-3 mt-3 mt-lg-0">
+                    <a href="index.html" class="btn-custom-light text-decoration-none text-center">Geopolítica</a>
+                    <!-- ESTE ES EL ENLACE A TU NUEVA PÁGINA -->
+                    <a href="asesinos-seriales.html" class="btn-custom-dark text-decoration-none text-center" style="background-color: #dc3545;">
+                        <i class="bi bi-incognito"></i> Perfiles Seriales
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
