@@ -3,51 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Observatorio Geopolítico</title>
-    <!-- Este es el enlace mágico que descarga Bootstrap automáticamente -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+    <title>Archivo Criminal | Landing Moderna</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/190/190411.png" type="image/png">
 
-    <!-- Menú de navegación oscuro -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Observatorio Geopolítico</a>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Fuente Inter de Google (La clave de este diseño) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Aplicamos la fuente moderna a toda la página */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* Fondo blanco puro como en la imagen */
+            color: #111111;
+        }
+
+        /* Estilos para el texto gigante del centro */
+        .hero-title {
+            font-size: 5.5rem; /* Tamaño enorme */
+            font-weight: 600; /* Seminegrita */
+            line-height: 1.05; /* Letras muy juntas hacia abajo */
+            letter-spacing: -3px; /* Letras muy juntas hacia los lados */
+            margin-bottom: 2rem;
+        }
+
+        /* En celulares el texto debe ser un poco más pequeño */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+                letter-spacing: -1.5px;
+            }
+        }
+
+        /* Botones estilo pastilla (Pill) idénticos a la imagen */
+        .btn-custom-dark {
+            background-color: #111111;
+            color: #ffffff;
+            border-radius: 50px; /* Hace el botón redondo en las esquinas */
+            padding: 12px 28px;
+            font-weight: 500;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-custom-dark:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .btn-custom-light {
+            background-color: #f8f9fa;
+            color: #111111;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 500;
+            border: 1px solid #e5e5e5;
+            transition: all 0.2s;
+        }
+        .btn-custom-light:hover {
+            background-color: #e5e5e5;
+        }
+
+        /* Contenedor del video/imagen inferior */
+        .media-container {
+            background-color: #000000;
+            border-radius: 30px; /* Bordes muy redondeados */
+            height: 60vh; /* Ocupa el 60% del alto de la pantalla */
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            margin-top: 4rem;
+        }
+
+        /* Botón flotante dentro del video */
+        .btn-floating-video {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ffffff;
+            color: #111111;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* --- NUEVOS ESTILOS PARA LAS SECCIONES EXTENSAS --- */
+        /* Animación de la barra de noticias */
+        .scrolling-ticker {
+            background: #111111;
+            color: #ffffff;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Títulos de sección con ímpetu */
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        
+        /* Tarjetas de artículos flotantes */
+        .article-card {
+            border: none;
+            border-radius: 24px;
+            background: #f8f9fa;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .article-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .article-img-wrapper {
+            height: 240px;
+            overflow: hidden;
+            border-radius: 24px 24px 0 0;
+        }
+        .article-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .article-card:hover .article-img-wrapper img {
+            transform: scale(1.05); /* Zoom suave al pasar el ratón */
+        }
+        .tag {
+            background: #111111;
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Sección oscura de impacto numérico */
+        .stats-section {
+            background-color: #111111;
+            color: #ffffff;
+            border-radius: 40px;
+            padding: 6rem 2rem;
+            margin-top: 6rem;
+        }
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -3px;
+            color: #ffffff;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-light bg-white py-3">
+        <div class="container d-flex justify-content-center">
+            <!-- Logo y nombre centrados -->
+            <a class="navbar-brand fw-bold d-flex align-items-center m-0" href="#">
+                <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Logo" width="24" height="24" class="me-2">
+                Archivo Criminal
+            </a>
         </div>
     </nav>
 
-    <!-- Contenedor principal de noticias -->
-    <div class="container mt-5">
-        <div class="row">
+    <main class="container text-center" style="margin-top: 10vh;">
+        <!-- Texto Gigante -->
+        <h1 class="hero-title">
+            Análisis profundo de la<br>geopolítica global
+        </h1>
+        
+        <!-- Botones centrales -->
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="btn-custom-dark text-decoration-none">Explorar expedientes</a>
+            <a href="#" class="btn-custom-light text-decoration-none">Ver investigaciones</a>
+        </div>
+
+        <div class="media-container shadow-lg">
+            <!-- Imagen de fondo tipo constelación/mapa (puedes cambiarla luego) -->
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&h=1000&fit=crop" class="w-100 h-100 object-fit-cover opacity-50" alt="Fondo Geopolítico">
             
-            <!-- Columna principal (Análisis destacado) -->
-            <div class="col-md-8">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <span class="badge bg-danger mb-2">Economía y Sanciones</span>
-                        <h2 class="card-title">El impacto de las sanciones internacionales en las cadenas de suministro</h2>
-                        <p class="card-text">Un análisis detallado sobre cómo los embargos alteran las normativas aduaneras y la economía global en 2026.</p>
-                        <a href="articulo-ejemplo.html" class="btn btn-primary">Leer análisis completo</a>
-                    </div>
-                </div>
-            </div>
+            <!-- Botón flotante -->
+            <button class="btn-floating-video d-flex align-items-center">
+                <i class="bi bi-play-fill me-2 fs-5"></i> Reproducir introducción
+            </button>
+        </div>
+    </main>
 
-            <!-- Columna lateral (Noticias breves o perfiles) -->
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-secondary text-white fw-bold">
-                        Fichas de Conflicto
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tratados Marítimos y Zonas de Exclusión</li>
-                        <li class="list-group-item">Jurisdicción de la Corte Penal Internacional</li>
-                        <li class="list-group-item">Evolución de las Alianzas OTAN - BRICS</li>
-                    </ul>
-                </div>
-            </div>
-
+    <!-- 1. BARRA DE NOTICIAS EN MOVIMIENTO (TICKER) -->
+    <!-- Agrega movimiento instantáneo a la página sin necesidad de programar animaciones complejas en JS -->
+    <div class="scrolling-ticker mt-5">
+        <div class="ticker-content">
+            <span class="text-danger fw-bold mx-3">EN DIRECTO</span> • NUEVAS SANCIONES COMERCIALES APLICADAS EN EUROPA DEL ESTE • 
+            <span class="text-danger fw-bold mx-3">ÚLTIMA HORA</span> • LA CORTE PENAL INTERNACIONAL ABRE INVESTIGACIÓN POR CRÍMENES CIBERNÉTICOS • 
+            <span class="text-danger fw-bold mx-3">ALERTA ESTRATÉGICA</span> • DESPLIEGUE NAVAL EN EL MAR DEL SUR DE CHINA ALTERA RUTAS ADUANERAS • 
+            <span class="text-danger fw-bold mx-3">REPORTE CLASIFICADO</span> • FALLO EN LA INFRAESTRUCTURA ENERGÉTICA GLOBAL •
         </div>
     </div>
 
+    <!-- 2. SECCIÓN DE INVESTIGACIONES PROFUNDAS -->
+    <section class="container" style="margin-top: 7rem; margin-bottom: 7rem;">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+            <h2 class="section-title mb-3 mb-md-0">Investigaciones<br>desclasificadas</h2>
+            <a href="#" class="btn-custom-light text-decoration-none mb-2">Acceder al archivo completo</a>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Tarjeta de Artículo 1 -->
+            <div class="col-md-4">
+                <div class="article-card h-100">
+                    <div class="article-img-wrapper">
+                        <!-- Imagen satelital / ciberguerra -->
+                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=800&h=600&fit=crop" alt="Ciberseguridad">
+                    </div>
+                    <div class="p-4">
+                        <span class="tag mb-3 d-inline-block">Ciberguerra</span>
+                        <h4 class="fw-bold mb-3" style="letter-spacing: -0.5px; font-size: 1.4rem;">El sabotaje invisible a infraestructuras críticas</h4>
+                        <p class="text-muted small mb-0">Análisis de los ataques de 2026 y cómo el derecho internacional intenta regular las armas digitales sin fronteras físicas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tarjeta de Artículo 2 -->
+            <div class="col-md-4">
+                <div class="article-card h-100">
+                    <div class="article-img-wrapper">
+                        <!-- Imagen de puertos / comercio -->
+                        <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=800&h=600&fit=crop" alt="Mercados">
+                    </div>
+                    <div class="p-4">
+                        <span class="tag mb-3 d-inline-block">Economía Global</span>
+                        <h4 class="fw-bold mb-3" style="letter-spacing: -0.5px; font-size: 1.4rem;">Sanciones comerciales y el colapso del suministro</h4>
+                        <p class="text-muted small mb-0">Cómo los bloqueos económicos actuales están obligando a reescribir los tratados de libre comercio marítimo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Artículo 3 -->
+            <div class="col-md-4">
+                <div class="article-card h-100">
+                    <div class="article-img-wrapper">
+                        <!-- Imagen de cumbres / leyes -->
+                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800&h=600&fit=crop" alt="Tratados">
+                    </div>
+                    <div class="p-4">
+                        <span class="tag mb-3 d-inline-block">Derecho Penal</span>
+                        <h4 class="fw-bold mb-3" style="letter-spacing: -0.5px; font-size: 1.4rem;">La jurisdicción de la Haya en tela de juicio</h4>
+                        <p class="text-muted small mb-0">Estudio sobre los vacíos legales en la persecución de crímenes de lesa humanidad en potencias no firmantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SECCIÓN DE IMPACTO / DATOS -->
+    <section class="container">
+        <div class="stats-section text-center shadow-lg">
+            <h2 class="fw-bold mb-5 pb-3" style="letter-spacing: -1.5px; font-size: 3.5rem;">El archivo en números</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="stat-number">1,204</div>
+                    <div class="text-secondary fw-bold text-uppercase mt-3" style="letter-spacing: 1px;">Documentos Analizados</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-number">45</div>
+                    <div class="text-secondary fw-bold text-uppercase mt-3" style="letter-spacing: 1px;">Conflictos Monitoreados</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-number">08</div>
+                    <div class="text-secondary fw-bold text-uppercase mt-3" style="letter-spacing: 1px;">Tratados Rotos (2026)</div>
+                </div>
+            </div>
+            <div class="mt-5 pt-5">
+                <a href="#" class="btn-custom-dark border border-secondary text-decoration-none px-5 py-3 fs-5">Únete a la red de investigadores</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FOOTER MODERNO -->
+    <footer class="container text-center py-5 mt-5">
+        <hr class="mb-5" style="opacity: 0.1;">
+        <h5 class="fw-bold mb-3 d-flex justify-content-center align-items-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Logo" width="24" height="24" class="me-2 opacity-75">
+            Archivo Criminal
+        </h5>
+        <p class="text-muted small mb-0">Observatorio independiente de análisis geopolítico y derecho internacional.</p>
+        <p class="text-muted small mt-1">© 2026 Todos los derechos reservados. Infraestructura segura.</p>
+    </footer>
+
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

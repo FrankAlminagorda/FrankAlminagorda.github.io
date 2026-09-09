@@ -1,0 +1,52 @@
+.media-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #000;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    animation: cinematicZoom 15s ease-in-out infinite alternate;
+}
+
+.play-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    border: none;
+    border-radius: 50px;
+
+    padding: 14px 24px;
+
+    background: white;
+    color: black;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.05);
+}
+
+@keyframes cinematicZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
