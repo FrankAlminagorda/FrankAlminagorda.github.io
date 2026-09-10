@@ -3,14 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVIDENCIA-01: Los Maníacos de la Academia</title>
-    
-    <!-- ETIQUETAS PARA GOOGLE (SEO) -->
-    <title>Archivo Criminal | Expedientes, Asesinos Seriales y Geopolítica</title>
-    <meta name="description" content="Base de datos y análisis profundo de criminología, perfiles de asesinos seriales (como los Maníacos de la Academia) y conflictos geopolíticos. Archivos desclasificados 2026.">
-    <meta name="keywords" content="asesinos seriales, criminologia, geopolitica, maniacos de la academia, perfiles criminales, derecho penal, irkutsk">
-    <meta name="author" content="Observatorio Archivo Criminal">
-    <meta name="robots" content="index, follow"> <!-- Le dice a Google que sí debe rastrear esta página -->
+    <title>Perfiles Seriales | Archivo Criminal</title>
     
     <!-- Favicon -->
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/190/190411.png" type="image/png">
@@ -20,312 +13,283 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
-    <!-- Fuente Mecanografiada / Terror (Special Elite) -->
+    <!-- Tipografías Premium: Inter (Títulos) y Lora (Textos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* Fondo principal sucio y gastado */
         body {
-            background-color: #050505;
-            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
-            color: #b5a999;
-            font-family: 'Special Elite', monospace;
-            line-height: 1.6;
+            background-color: #f4f6f8; /* Fondo claro para descanso visual */
+            color: #1f2937;
+            font-family: 'Lora', serif;
         }
 
-        .navbar-dark {
-            background-color: #000000 !important;
-            border-bottom: 1px solid #3a0000;
-            box-shadow: 0 4px 15px rgba(50, 0, 0, 0.3);
+        /* Títulos e interfaz limpios */
+        h1, h2, h3, h4, h5, .navbar, .btn, .badge, .metadata-text {
+            font-family: 'Inter', sans-serif;
         }
 
-        .expediente-folder {
-            background-color: #0c0b0b;
-            background-image: url('https://www.transparenttextures.com/patterns/stucco.png');
-            border: 1px solid #1a1a1a;
-            border-left: 5px solid #4a0000;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 5px 25px rgba(0,0,0,0.9);
-            padding: 3rem;
-            position: relative;
+        .navbar-brand { font-size: 1.5rem; letter-spacing: -0.5px; font-weight: 700; }
+        
+        /* Cabecera de la sección */
+        .section-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+        
+        .section-title {
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: #111827;
+            font-size: 3rem;
+        }
+
+        /* Tarjetas de Casos (Cards) */
+        .case-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
             overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        .blood-stain {
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #d1d5db;
+        }
+
+        /* Contenedor de la imagen del caso */
+        .case-img-wrapper {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .case-card:hover .case-img-wrapper img {
+            transform: scale(1.05); /* Efecto zoom sutil al pasar el ratón */
+        }
+
+        /* Etiqueta flotante en la imagen */
+        .status-badge {
             position: absolute;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(50,0,0,0.15) 0%, rgba(0,0,0,0) 60%);
-            border-radius: 50%;
-            top: 20%;
-            right: -50px;
-            pointer-events: none;
+            top: 15px;
+            left: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
-        .stamp-red {
-            display: inline-block;
-            color: #9e1a1a;
-            border: 3px solid #9e1a1a;
-            padding: 5px 15px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            transform: rotate(-4deg);
-            border-radius: 3px;
-            opacity: 0.8;
-            letter-spacing: 2px;
+        .status-closed { background-color: #1f2937; color: #ffffff; } /* Gris oscuro */
+        .status-active { background-color: #dc2626; color: #ffffff; } /* Rojo */
+
+        /* Contenido de la tarjeta */
+        .case-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .case-excerpt {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Empuja el botón y los datos hacia abajo */
+        }
+
+        .metadata-text {
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #f3f4f6;
+            padding-top: 15px;
             margin-bottom: 20px;
         }
 
-        h1, h2, h3, h4, h5 {
-            color: #d6cfc5;
-            text-transform: uppercase;
-            border-bottom: 1px dashed #333;
-            padding-bottom: 10px;
-            margin-top: 2rem;
-        }
-        h1 { font-size: 2.5rem; letter-spacing: -1px; }
-
-        .polaroid-container {
-            position: relative;
-            display: inline-block;
-            margin: 10px;
-            transform: rotate(-2deg);
-            transition: transform 0.3s;
-        }
-        .polaroid-container:hover { transform: scale(1.1) rotate(0deg); z-index: 10; }
-        .polaroid-container.rotate-right { transform: rotate(3deg); }
-        .polaroid-img {
-            background-color: #e3dec9;
-            padding: 5px 5px 25px 5px;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            filter: grayscale(100%) contrast(130%) brightness(85%) sepia(20%);
-        }
-        
-        .tape {
-            background-color: rgba(220, 220, 200, 0.4);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-            height: 25px;
-            width: 80px;
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-3deg);
-            z-index: 5;
+        /* Botón de acceso al expediente */
+        .btn-expediente {
+            background-color: #f9fafb;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: block;
+            width: 100%;
         }
 
-        .redacted {
-            background-color: #000;
-            color: #000;
-            padding: 0 5px;
-            user-select: none;
+        .btn-expediente:hover {
+            background-color: #111827;
+            color: #ffffff;
+            border-color: #111827;
         }
-        .redacted:hover { color: #b5a999; background-color: #1a1a1a; }
-
-        .evidence-box {
-            background-color: rgba(15, 15, 15, 0.9);
-            border: 1px solid #333;
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-        }
-        .evidence-box::before {
-            content: 'ADJUNTO';
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            background: #000;
-            padding: 0 5px;
-            font-size: 0.8rem;
-            color: #777;
-        }
-        
-        /* Estilos para la tabla de crímenes */
-        .table-dark-custom {
-            background-color: transparent;
-            color: #b5a999;
-            border-color: #333;
-        }
-        .table-dark-custom th { color: #d6cfc5; font-weight: normal; border-bottom: 2px solid #4a0000; }
-        .table-dark-custom td { border-bottom: 1px dashed #333; }
-        
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark pb-3 pt-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand text-light" style="font-family: 'Special Elite', monospace; font-size: 1rem;" href="index.html">
-                <i class="bi bi-hdd-network text-danger"></i> D.B. ARCHIVO_CRIMINAL
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-bank me-2"></i> Archivo Criminal
             </a>
-            <div class="d-flex">
-                <a href="asesinos-seriales.html" class="btn btn-outline-secondary btn-sm rounded-0 text-uppercase" style="font-family: 'Special Elite'; border-color: #333;">
-                    &lt; Abortar Visión
-                </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="menuPrincipal">
+                <ul class="navbar-nav mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Geopolítica</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-bold border-bottom border-danger border-3 pb-1" href="asesinos-seriales.html">
+                            Perfiles Seriales
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container mb-5 mt-4">
+    <header class="section-header text-center">
+        <div class="container">
+            <span class="text-danger fw-bold mb-2 d-block" style="font-family: 'Inter'; letter-spacing: 1px;">BASE DE DATOS COMPARTIMENTADA</span>
+            <h1 class="section-title">Expedientes Seriales</h1>
+            <p class="lead text-muted mx-auto mt-3" style="max-width: 700px;">
+                Análisis profundo, cronología y perfilamiento psicológico de los casos más notorios de la psiquiatría forense contemporánea.
+            </p>
+        </div>
+    </header>
+
+    <main class="container mb-5 pb-5">
         
-        <div class="expediente-folder">
-            <div class="blood-stain"></div>
-            
-            <header class="mb-5">
-                <div class="stamp-red">Clasificación: CONFIDENCIAL / NS-EXTREMA</div>
-                <h1>Análisis Criminológico, Psiquiátrico y Operativo del Caso "Maníacos de la Academia"</h1>
-                <p class="text-danger mt-3">
-                    <i class="bi bi-geo-alt"></i> ZONA CERO: Akademgorodok, Irkutsk, Rusia<br>
-                    <i class="bi bi-calendar-x"></i> VENTANA TEMPORAL: Noviembre 2010 - Abril 2011
-                </p>
-            </header>
-
-            <div class="row g-5 relative z-1">
-                
-                <!-- COLUMNA PRINCIPAL (Historia) -->
-                <div class="col-lg-8">
-                    
-                    <h3>[01] Introducción al Caso y Contexto Sociocriminológico</h3>
-                    <p>El fenómeno de los asesinos en serie juveniles representa una de las anomalías más complejas y perturbadoras dentro de la psiquiatría forense y la criminología moderna. Entre los casos más paradigmáticos y exhaustivamente documentados del siglo XXI se encuentra el de la díada homicida compuesta por Artyom Alexandrovich Anoufriev y Nikita Vakhtangovich Lytkin.</p>
-                    <p>Durante un período de actividad ininterrumpida de cinco meses, cometieron un total de diecisiete ataques documentados, que resultaron en la muerte de seis personas y dejaron a otras nueve con lesiones corporales graves. La naturaleza de estos crímenes evidenció una motivación puramente hedónica y expresiva, impulsada por un deseo patológico de notoriedad y un odio misantrópico estructurado a través de subculturas extremistas de internet.</p>
-
-                    <h3>[02] Perfil Biográfico y Desarrollo Psicosocial</h3>
-                    <p>La literatura criminológica contemporánea postula que el comportamiento homicida serial es el resultado terminal de una convergencia de vulnerabilidades. Anoufriev y Lytkin provenían de familias monoparentales fracturadas y compartían un profundo resentimiento hacia la estructura social, creando las condiciones perfectas para una simbiosis letal.</p>
-                    
-                    <h4>SUJETO A: Artyom Alexandrovich Anoufriev</h4>
-                    <p>Nacido el 4 de octubre de 1992. Experimentó un desarrollo psicosocial marcado por la ausencia paterna. Su madre, Nina Ivanovna Anoufrieva, ejercía un estilo de crianza altamente despótico, inculcando activamente en su hijo una visión hostil, paranoica y antagónica del mundo. A pesar de capacidades intelectuales normativas iniciales, en el ámbito sociométrico era un paria absoluto.</p>
-                    <div class="evidence-box">
-                        <p class="mb-0 fst-italic text-secondary">"Si soy honesto, no sé qué es la felicidad. Pero me gustaría mucho descubrirlo pronto."</p>
-                        <p class="text-end small mb-0 mt-2 text-danger">- A. Anoufriev, archivo de video escolar.</p>
-                    </div>
-                    <p>Su deterioro psicológico se aceleró al integrarse a grupos de cabezas rapadas de ideología neonazi. Los vecinos reportaban ataques de furia donde declaraba "¡Odio a todos!" y "¡Los voy a matar!", evidenciando abuso hacia su propia madre.</p>
-
-                    <h4>SUJETO B: Nikita Vakhtangovich Lytkin</h4>
-                    <p>Nacido el 24 de marzo de 1993. Su perfil temprano corresponde al de un niño profundamente retraído y patológicamente sumiso. Su incapacidad para defenderse lo convirtió en el objetivo perenne del acoso escolar severo. Lytkin se refugió en un aislamiento misantrópico absoluto.</p>
-                    <p>Esta acumulación de frustración culminó en un acto de robo temprano en la casa de un compañero. Su madre, aterrorizada, retiró la denuncia policial, reforzando en Lytkin la noción de impunidad.</p>
-
-                    <h3>[03] La Simbiosis y la Cámara de Eco Digital</h3>
-                    <p>Esta díada evidencia un caso clínico clásico de <span class="text-danger">folie à deux asimétrica</span> (trastorno psicótico compartido). Anoufriev proporcionó el andamiaje ideológico, mientras Lytkin se convirtió en el vector físico. La radicalización fue catalizada por la música "noisecore" y foros en VKontakte.</p>
-                    <p>Desarrollaron una fijación obsesiva con asesinos como Alexander Pichushkin y los "Maníacos de Dnepropetrovsk". Su psicopatía performativa llegó al punto de interactuar anónimamente en foros con sus propias víctimas sobrevivientes, interrogándolas sobre el dolor experimentado.</p>
-
-                    <h3>[04] Criminodinámica, Modus Operandi y Escalada</h3>
-                    <p>Operaban como "merodeadores locales" en Akademgorodok, amparados por el invierno siberiano y la ausencia materna. Lytkin dictaba el criterio: debilidad proyectada (ancianas, niños, mujeres solas, intoxicados).</p>
-                    <p>Su armamento evolucionó a las "kiyankas" (mazos de goma que se congelaban hasta adquirir la letalidad del acero). El asalto era por la espalda; Lytkin aturdía e incapacitaba, Anoufriev se sumaba al "overkill" (sobre-ensañamiento) golpeando el cráneo, seguido de mutilaciones post-mortem ejecutadas por Lytkin.</p>
-
-                    <h3>[05] Cronología Forense de los Ataques</h3>
-                    <!-- Tabla de crímenes -->
-                    <div class="table-responsive mt-3">
-                        <table class="table table-dark-custom align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Víctima (Edad)</th>
-                                    <th>Descripción Forense</th>
-                                </tr>
-                            </thead>
-                            <tbody class="small">
-                                <tr>
-                                    <td>1 Dic. 2010</td>
-                                    <td class="text-danger">Danil Semyonov (12)</td>
-                                    <td>Homicidio. Golpeado con mazo por Lytkin y bate por Anoufriev. Lytkin incrustó una navaja en la sien. (Negligencia forense inicial lo catalogó como accidente).</td>
-                                </tr>
-                                <tr>
-                                    <td>16 Dic. 2010</td>
-                                    <td class="text-danger">Olga Pirog (69)</td>
-                                    <td>Homicidio. Masacrada con mazos. El audio del asesinato fue grabado con un dictáfono ("Ahí va una abuela, atácala").</td>
-                                </tr>
-                                <tr>
-                                    <td>1 Ene. 2011</td>
-                                    <td class="text-danger">Hombre no identificado</td>
-                                    <td>Homicidio ("Corpse 20"). Sufrió más de 40 impactos directos de martillo. Falleció en cuidados intensivos.</td>
-                                </tr>
-                                <tr>
-                                    <td>21 Feb. 2011</td>
-                                    <td class="text-danger">Alexander Maximov (18)</td>
-                                    <td>Homicidio. Asaltado sin piedad; mandíbula y estructura craneal anatómicamente irreconocibles.</td>
-                                </tr>
-                                <tr>
-                                    <td>11 Mar. 2011</td>
-                                    <td class="text-danger">Roman Faizullin</td>
-                                    <td>Homicidio. Disparado con arma neumática, apuñalado y mutilado (dedo meñique cercenado como trofeo).</td>
-                                </tr>
-                                <tr>
-                                    <td>3 Abr. 2011</td>
-                                    <td class="text-danger">Alevtina Kuydina (60)</td>
-                                    <td>Homicidio y Mutilación Extrema. Destrucción craneal. Amputación de lóbulo derecho de la oreja e intento de extracción ocular. Video grabado.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>[06] La Captura y el Proceso Judicial</h3>
-                    <p>La arrogancia digital los llevó a enviar el video del asesinato de Kuydina a un contacto en San Petersburgo. Sin embargo, fue la tarjeta SD de la cámara, propiedad del tío de Lytkin (Vladislav), la que los delató. Al encontrar los horribles metrajes, Vladislav los entregó a la policía el 5 de abril de 2011.</p>
-                    <p>El Instituto Serbsky los declaró clínicamente cuerdos. El juicio oral abarcó ocho tortuosos meses (2012-2013). Anoufriev, desesperado, intentó culpar a Lytkin e intentó suicidarse en pleno debate. Lytkin mantuvo una postura de disociación catatónica.</p>
-                    <p>El 2 de abril de 2013, se dictaminó culpabilidad. Anoufriev fue sentenciado a cadena perpetua. Lytkin, por ser menor de edad al iniciar los crímenes, fue sentenciado a 24 años (posteriormente reducidos a 20).</p>
-
-                    <h3>[07] Epílogo y Conclusiones Criminológicas</h3>
-                    <p>El rastro de destrucción dejó secuelas psicosomáticas masivas en las familias afectadas (pérdida de dientes, colapso inmunológico, intolerancia a sonidos mecánicos). </p>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <span class="text-light">> ANOUFRIEV:</span> Desapareció en una colonia penal de régimen especial, presuntamente escribiendo un manuscrito para justificar su metamorfosis.
-                        </li>
-                        <li class="mb-3">
-                            <span class="text-light">> LYTKIN:</span> Recluido en la IK-7 de Angarsk. El 28 de noviembre de 2021, Lytkin ejecutó una maniobra terminal de automutilación (corte de arterias), falleciendo el 30 de noviembre a los 28 años.
-                        </li>
-                    </ul>
-                    
-                    <div class="evidence-box">
-                        <p class="mb-0 text-secondary">"El mal superior no siempre emerge de los confines oscuros... a menudo se halla incubándose sigilosamente detrás de las pantallas de habitaciones de adolescentes desatendidos, nutriéndose en un mutismo cómplice... aguardando el primer latido para estallar desbocado contra la realidad."</p>
-                    </div>
-
-                </div>
-
-                <!-- COLUMNA LATERAL (Fichas fotográficas y datos fríos) -->
-                <div class="col-lg-4">
-                    
-                    <div class="evidence-box">
-                        <h5 class="text-light"><i class="bi bi-file-earmark-bar-graph"></i> Resumen Operativo</h5>
-                        <ul class="list-unstyled mb-0" style="line-height: 2;">
-                            <li><span class="text-secondary">Muertes confirmadas:</span> <span class="text-danger fs-5">06</span></li>
-                            <li><span class="text-secondary">Sobrevivientes:</span> <span class="text-warning fs-5">09-10</span></li>
-                            <li><span class="text-secondary">Herramientas:</span> Mazos congelados (Kiyankas), bates, cuchillos.</li>
-                            <li><span class="text-secondary">Firma Forense:</span> Overkill craneal, mutilación táctica y trofeos.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Fichas Fotográficas Polaroid -->
-                    <div class="mt-5 text-center">
-                        <h5 class="text-secondary mb-4 text-start">GALERÍA DE SUJETOS</h5>
-                        
-                        <!-- Polaroid 1 -->
-                        <div class="polaroid-container">
-                            <div class="tape"></div>
-                            <!-- Reemplazar con fotos reales si las tienes -->
-                            <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=200&h=200&fit=crop" alt="Mugshot Anoufriev" class="polaroid-img">
-                            <p class="mt-2 mb-0 fw-bold text-dark small" style="background:#e3dec9; width:150px; margin:0 auto; padding-bottom:5px;">ANOUFRIEV, A.</p>
-                        </div>
-
-                        <!-- Polaroid 2 -->
-                        <div class="polaroid-container rotate-right mt-3">
-                            <div class="tape"></div>
-                            <!-- Reemplazar con fotos reales si las tienes -->
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&fit=crop" alt="Mugshot Lytkin" class="polaroid-img">
-                            <p class="mt-2 mb-0 fw-bold text-dark small" style="background:#e3dec9; width:150px; margin:0 auto; padding-bottom:5px;">LYTKIN, N. [O.B.]</p>
-                        </div>
-                    </div>
-
-                </div>
+        <!-- Controles de filtrado (Visuales para diseño) -->
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary-subtle">
+            <div class="text-muted fw-bold" style="font-family: 'Inter'; font-size: 0.9rem;">
+                MOSTRANDO: TODOS LOS REGISTROS
+            </div>
+            <div>
+                <select class="form-select form-select-sm shadow-sm" style="font-family: 'Inter'; font-weight: 500;">
+                    <option selected>Ordenar por: Más recientes</option>
+                    <option value="1">Gravedad del perfil</option>
+                    <option value="2">Casos históricos</option>
+                </select>
             </div>
         </div>
+
+        <div class="row g-4">
+            
+            <!-- CASO 01: MANÍACOS DE LA ACADEMIA (Este es el que conecta con tu texto) -->
+            <div class="col-lg-4 col-md-6">
+                <article class="case-card">
+                    <div class="case-img-wrapper">
+                        <span class="status-badge status-closed"><i class="bi bi-archive-fill me-1"></i> Expediente Cerrado</span>
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a5d?q=80&w=800&auto=format&fit=crop" alt="Paisaje nevado bosque">
+                    </div>
+                    <div class="case-body">
+                        <h2 class="case-title">Los Maníacos de la Academia</h2>
+                        <p class="case-excerpt">
+                            La díada homicida rusa compuesta por los adolescentes Artyom Anoufriev y Nikita Lytkin. Una serie de ataques brutales con martillos en Siberia impulsados por la radicalización digital y el odio misantrópico.
+                        </p>
+                        <div class="metadata-text">
+                            <span><i class="bi bi-geo-alt"></i> Irkutsk, Rusia</span>
+                            <span><i class="bi bi-calendar-event"></i> 2010 - 2011</span>
+                        </div>
+                        
+                        <!-- EL BOTÓN CLAVE: Te lleva a la lectura completa -->
+                        <a href="caso-maniacos.html" class="btn-expediente">
+                            Abrir Expediente Completo <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CASO 02: EJEMPLO / PLACEHOLDER -->
+            <div class="col-lg-4 col-md-6">
+                <article class="case-card" style="opacity: 0.85;">
+                    <div class="case-img-wrapper">
+                        <span class="status-badge status-closed" style="background-color: #4b5563;">En revisión</span>
+                        <img src="https://images.unsplash.com/photo-1506544777-64cfbea07323?q=80&w=800&auto=format&fit=crop" alt="Rutas andinas">
+                    </div>
+                    <div class="case-body">
+                        <h2 class="case-title">El Monstruo de los Andes</h2>
+                        <p class="case-excerpt">
+                            Perfilamiento transversal del modus operandi de Pedro Alonso López, responsable de cientos de desapariciones en la región andina durante la década de los ochenta. Análisis de vulneración fronteriza.
+                        </p>
+                        <div class="metadata-text">
+                            <span><i class="bi bi-geo-alt"></i> LATAM</span>
+                            <span><i class="bi bi-calendar-event"></i> 1969 - 1980</span>
+                        </div>
+                        <a href="#" class="btn-expediente" style="pointer-events: none; opacity: 0.5;">
+                            Próximamente <i class="bi bi-lock ms-1"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- CASO 03: EJEMPLO / PLACEHOLDER -->
+            <div class="col-lg-4 col-md-6">
+                <article class="case-card" style="opacity: 0.85;">
+                    <div class="case-img-wrapper">
+                        <span class="status-badge status-closed" style="background-color: #4b5563;">En revisión</span>
+                        <img src="https://images.unsplash.com/photo-1596720426673-e4e14290f0cc?q=80&w=800&auto=format&fit=crop" alt="Estación de tren sombria">
+                    </div>
+                    <div class="case-body">
+                        <h2 class="case-title">El Carnicero de Rostov</h2>
+                        <p class="case-excerpt">
+                            Estudio de la negligencia institucional soviética en la persecución de Andrei Chikatilo. Cómo los sesgos ideológicos permitieron la escalada forense de uno de los asesinos más prolíficos de Europa del Este.
+                        </p>
+                        <div class="metadata-text">
+                            <span><i class="bi bi-geo-alt"></i> URSS</span>
+                            <span><i class="bi bi-calendar-event"></i> 1978 - 1990</span>
+                        </div>
+                        <a href="#" class="btn-expediente" style="pointer-events: none; opacity: 0.5;">
+                            Próximamente <i class="bi bi-lock ms-1"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+        </div> <!-- Fin del Grid -->
     </main>
 
-    <!-- Pie de página -->
-    <footer class="bg-black text-center py-4 border-top border-dark mt-5">
-        <p class="text-muted small mb-0" style="font-family: 'Special Elite', monospace;">ADVERTENCIA: MATERIAL CLASIFICADO. DISTRIBUCIÓN RESTRINGIDA.</p>
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+        <div class="container">
+            <p class="mb-0 fw-bold" style="font-family: 'Inter';">&copy; 2026 Archivo Criminal.</p>
+            <p class="small text-secondary mt-1" style="font-family: 'Inter';">Observatorio independiente de investigación analítica.</p>
+        </div>
     </footer>
 
     <!-- Bootstrap JS -->
